@@ -1,0 +1,77 @@
+import React, { useState } from "react";
+import { FaUser, FaLock } from "react-icons/fa";
+import { toast } from "react-toastify";
+
+const Register = (props) => {
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const [name, setName] = useState('');
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassChange = (e) => {
+    setPass(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email);
+  };
+
+  const handleRegister =(e) => {
+      console.log("Email",email,pass);
+      const requestOptions ={
+        method: 'POST',
+        headars : {'Content-type' : 'application/json'},
+        body:JSON.stringify({username: email,password:pass})
+      };
+      console.log('BODY',requestOptions);
+      const Response = await fetch('http://localhost:8000/register',requestOptions)
+    console.log("🚀 ~ handleRegister ~ Response:", Response.status)
+      const res=  await Response.json()
+    console.log("🚀 ~ handleRegister ~ res:", res)
+     if(Response.status === 200){
+      toast.success("Register Successfully!");
+     }
+     else{
+      toast.error("Invalid password or username");
+     }
+  }
+
+
+
+  return (
+    <>
+      <div className='wrapper'>
+        <form onSubmit={handleSubmit} action="">
+          <h1>Register</h1>
+          <div className="input-box">
+            <input value={email} type="text" placeholder='Email' onChange={handleEmailChange} required />
+            <FaUser className='icon' />
+          </div>
+          <div className="input-box">
+            <input value={pass} type="password" placeholder='Password' onChange={handlePassChange} required />
+            <FaLock className='icon' />
+          </div>
+          {/* <div className="input-box">
+            <input value={name} type="text" placeholder='Name' onChange={handleNameChange} required />
+            <FaUser className='icon' /> */}
+          </div>
+
+          <button type="submit" onClick={handleRegister}>Register</button>
+          <div className='register-link'>
+            <p onClick={() => props.onFormSwitch('login')}>Already have an account? <a href="#">Login</a></p>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default Register;

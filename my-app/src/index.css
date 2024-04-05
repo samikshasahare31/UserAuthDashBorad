@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background-color: green; */
+  /* background-image: linear-gradient(to right, #e1dfeb, #c6c1e7, #a9a3e2, #8986dd, #656bd8, #5f6dda, #5870dc, #5172de, #7690e6, #9aafeb, #c0cdef, #e8ebf2); */
+}
+.LoginBody{
+  margin: 0;
+  font-family: 'Poppins',sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
